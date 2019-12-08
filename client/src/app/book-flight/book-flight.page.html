@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Book</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+<ion-row padding>
+  <ion-col>
+    Flight Name:
+  </ion-col>
+  <ion-col>
+    {{this.schedule.flightName}}
+    </ion-col>
+</ion-row>
+<ion-row padding>
+    <ion-col>
+      Total Charges:
+    </ion-col>
+    <ion-col >
+        <ion-label > {{this.total}}</ion-label>
+     
+      </ion-col>
+  </ion-row>
+  <ion-row padding>
+  <ion-col>
+    <ion-input [(ngModel)]="this.passenger"></ion-input>
+     
+    </ion-col>
+    <ion-col>
+        <ion-button (click)='addPassenger(this.passenger)'>Add Passenger</ion-button>
+      </ion-col>
+    </ion-row>
+ <ion-row>
+    <ion-list>
+        <ion-item *ngFor="let passenger of this.passengerList">
+          <ion-label>{{passenger}}</ion-label>
+        </ion-item>
+        </ion-list>
+      </ion-row>
+      <ion-row>
+          <ion-button (click)='bookFlight()'>Confirm</ion-button>
+      </ion-row>
+</ion-content>

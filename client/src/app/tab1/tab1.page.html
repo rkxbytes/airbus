@@ -1,0 +1,129 @@
+
+<ion-header translucent>
+    <ion-toolbar>
+        <ion-title>
+          Search Flights
+        </ion-title>
+      </ion-toolbar>
+  <ion-row>
+  
+         
+    <ion-col>   
+        <select class="ab-input" [(ngModel)]="this.fromid" (ngModelChange)="onchangefrom(this.fromid);">
+            <option value="undefined" disabled hidden>From</option>
+            <option [value]="airport.id"*ngFor="let airport of this.searchProvider.airports ; let i = index">
+                {{airport.name}}
+            </option>
+          </select>
+     
+    </ion-col>
+  
+    <ion-col>  
+        <select class="ab-input" [(ngModel)]="this.toid" (ngModelChange)="onchangeto(this.toid);">
+            <option value="undefined" disabled hidden>To</option>
+            <option [value]="airport.id"*ngFor="let airport of this.searchProvider.airports ; let i = index">
+                {{airport.name}}
+            </option>
+          </select>
+    </ion-col>
+    <ion-col>  <ion-button (click) = "search()">Search</ion-button></ion-col>
+  </ion-row>
+</ion-header>
+<ion-content fullscreen>
+    <div *ngIf = "this.searchProvider.schedules.length > 0">
+        <ion-card>
+        <ion-row >
+       
+                <ion-col col-2  >
+                        Flight
+                       
+                      </ion-col>
+                      <ion-col col-2  >
+                          Source
+                       
+                        </ion-col>  
+                         <ion-col col-2  >
+                            Departure Time
+                         
+                          </ion-col>
+                     
+                         <ion-col col-2  >
+                            Destination
+                         
+                          </ion-col>
+                    
+                         <ion-col col-2  >
+                            Arrival Time
+                         
+                          </ion-col>
+                     
+                        <ion-col col-1  >
+                            Charges
+                         
+                          </ion-col>
+                          <ion-col col-1  >
+                              
+                           
+                            </ion-col>
+                     
+        </ion-row>
+      </ion-card>
+    </div>
+    <div *ngFor="let schedule of this.searchProvider.schedules ;  index as i">
+        <ion-card >
+          <ion-row class="CardHeight">
+            <ion-col col-2>
+              <ion-row>
+                <ion-label text-left style="margin-top: 10px;">
+                        {{schedule.flightName}}
+                 
+                </ion-label>
+              </ion-row>
+            </ion-col>
+            <ion-col col-2>
+                <ion-row>
+                  <ion-label text-left style="margin-top: 10px;">
+                          {{schedule.source}}
+  
+                  </ion-label>
+                </ion-row>
+              </ion-col>
+            <ion-col col-2>
+              <ion-row>
+                <ion-label text-left style="margin-top: 10px;">
+                        {{schedule.departuretime}}
+                </ion-label>
+              </ion-row>
+            </ion-col>
+            <ion-col col-2>
+                <ion-row>
+                  <ion-label text-left style="margin-top: 10px;">
+                          {{schedule.destination}}
+  
+                  </ion-label>
+                </ion-row>
+              </ion-col>
+         
+            <ion-col col-2>
+                <ion-row>
+                  <ion-label text-left style="margin-top: 10px;">
+                    {{schedule.arrivaltime}}
+                  </ion-label>
+                </ion-row>
+              </ion-col>
+           
+              <ion-col col-1>
+                  <ion-row>
+                    <ion-label text-left style="margin-top: 10px;">
+                      {{schedule.charges}}
+                    </ion-label>
+                  </ion-row>
+                </ion-col>
+                <ion-col col-1  >
+                    <ion-button (click)='bookFlight(schedule)'>Book</ion-button>
+                  </ion-col>
+          </ion-row>
+        </ion-card>
+      </div>          
+
+</ion-content>
